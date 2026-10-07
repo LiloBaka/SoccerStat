@@ -4,6 +4,7 @@ import path from 'node:path'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
+  const apiToken = env.FOOTBALL_DATA_API_KEY
 
   return {
     base: env.VITE_BASE_PATH || '/',
@@ -16,9 +17,10 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'https://api.football-data.org',
+          target: 'https://api.football-data.org/v4',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
+          headers: apiToken ? { 'X-Auth-Token': apiToken } : undefined,
         },
       },
     },
