@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export function hasApiToken() {
-  return Boolean(import.meta.env.VITE_API_TOKEN)
+  return true
 }
 
 export function getMissingTokenMessage() {
-  return 'Не найден VITE_API_TOKEN. Создай .env по примеру из .env.example и вставь свой токен.'
+  return 'API недоступен. Проверь серверную переменную FOOTBALL_DATA_API_KEY в настройках Vercel.'
 }
 
 export function getApiErrorMessage(error: unknown) {
@@ -17,7 +17,7 @@ export function getApiErrorMessage(error: unknown) {
   const apiMessage = error.response?.data?.message
 
   if (status === 401) {
-    return 'API токен не прошёл проверку. Проверь значение VITE_API_TOKEN.'
+    return 'API токен не прошёл проверку. Проверь FOOTBALL_DATA_API_KEY в настройках Vercel.'
   }
 
   if (status === 403) {
