@@ -1,0 +1,10 @@
+node_modules/
+SoccerStat/node_modules/
+SoccerStat/dist/
+.env
+.env.*
+!.env.example
+SoccerStat/.env
+SoccerStat/.env.*
+!SoccerStat/.env.example
+.DS_Store
